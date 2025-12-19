@@ -1,15 +1,17 @@
+package br.com.alura.screenMatch.principal;
+
 import br.com.alura.screenMatch.calculos.CalculadoraDeTempo;
 import br.com.alura.screenMatch.calculos.FiltroRecomendacao;
 import br.com.alura.screenMatch.modelos.Episodio;
 import br.com.alura.screenMatch.modelos.Filme;
 import br.com.alura.screenMatch.modelos.Serie;
 
+import java.util.ArrayList;
+
 public class Principal {
     public static void main(String[] args) {
 
-        Filme favorito = new Filme();
-        favorito.setNome("O Senhor dos Anéis");
-        favorito.setAnoDeLancamento(2002);
+        Filme favorito = new Filme("O Senhor dos Anéis", 2002);
         favorito.setDuracaoEmMinutos(210);
         favorito.setIncluidoNoPlano(true);
         System.out.println("Duração para assistir " + favorito.getNome() + ": " + favorito.getDuracaoEmMinutos());
@@ -21,9 +23,7 @@ public class Principal {
         System.out.println("Total de avaliações: " + favorito.getTotalDeAvaliacoes());
         System.out.println(favorito.calculaMedia());
 
-        Filme outro = new Filme();
-        outro.setNome("Wicked");
-        outro.setAnoDeLancamento(2025);
+        Filme outro = new Filme("Wicked", 2025);
         outro.setDuracaoEmMinutos(180);
         System.out.println("Duração para assistir " + outro.getNome() + ": " + outro.getDuracaoEmMinutos());
         outro.exibeFichaTecnica();
@@ -34,9 +34,7 @@ public class Principal {
         System.out.println("Total de avaliações: " + outro.getTotalDeAvaliacoes());
         System.out.println(outro.calculaMedia());
 
-        Serie serie = new Serie();
-        serie.setNome("Vikings");
-        serie.setAnoDeLancamento(2014);
+        Serie serie = new Serie("Vikings", 2014);
         serie.setIncluidoNoPlano(true);
         serie.setAtiva(true);
         serie.exibeFichaTecnica();
@@ -59,5 +57,24 @@ public class Principal {
         episodio.setSerie(serie);
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
+
+        // Filme filmeDaKarine = new Filme();;
+        // var = permite que o compilador infira automaticamente o tipo da variável com base no valor atribuído a ela
+       // var filmeDaKarine = new Filme();;
+        var filmeDaKarine = new Filme("Um filme qualquer", 2013);
+        // filmeDaKarine.setNome("Um filme qualquer");
+        // filmeDaKarine.setAnoDeLancamento();
+        filmeDaKarine.avalia(10);
+
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(filmeDaKarine);
+        listaDeFilmes.add(outro);
+        listaDeFilmes.add(favorito);
+
+        System.out.println("Tamanho da lista: " + listaDeFilmes.size());
+        System.out.println("Primeiro filme: " + listaDeFilmes.get(0).getNome());
+        System.out.println(listaDeFilmes);
+        System.out.println("toString do filme " + listaDeFilmes.get(0).toString());
+
     }
 }
