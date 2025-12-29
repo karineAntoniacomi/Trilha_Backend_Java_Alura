@@ -1,0 +1,4 @@
+ALTER TABLE medicos
+ALTER COLUMN ativo
+TYPE BOOLEAN
+USING ativo = 1;
