@@ -24,16 +24,21 @@ public class SecurityConfigurations {
     // Metodo que desabilita proteção contra cross-site request forgery
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityFilter securityFilter) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
-                // desabilita o bloqueio de requisções do Spring Security sem estar logado e também o formulário de login padrão do Spring
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(req -> {
-                    req.requestMatchers("/login").permitAll();
-                    req.anyRequest().authenticated()
-                    // Chamar o Securityfilter antes do filtro do Spring
-                    .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
-                })
-            .build();
+
+        return http
+                // Desabilita CSRF (comum em APIs REST)
+                .csrf(csrf -> csrf.disable())
+                // API stateless (JWT, por exemplo)
+                .sessionManagement(sm ->
+                        sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Regras de autorização
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
+                        .anyRequest().authenticated())
+                // Adiciona seu filtro antes do filtro padrão de autenticação
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean
