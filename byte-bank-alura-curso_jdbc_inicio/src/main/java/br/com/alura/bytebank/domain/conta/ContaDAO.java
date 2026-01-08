@@ -23,7 +23,7 @@ public class ContaDAO {
         var cliente = new Cliente(dadosDaConta.dadosCliente());
         var conta = new Conta(dadosDaConta.numero(), BigDecimal.ZERO, cliente, true);
 
-        String sql = "INSERT INTO byte_bank.conta " +
+        String sql = "INSERT INTO beca_java.byte_bank.conta " +
                 "(numero, saldo, cliente_nome, cliente_cpf, cliente_email, esta_ativa) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -52,7 +52,7 @@ public class ContaDAO {
         PreparedStatement ps;
         ResultSet resultSet;
 
-        String sql = "SELECT * FROM byte_bank.conta WHERE esta_ativa = TRUE";
+        String sql = "SELECT * FROM beca_java.byte_bank.conta WHERE esta_ativa = TRUE";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class ContaDAO {
     }
 
     public Conta listarPorNumero(Integer numero) {
-        String sql = "SELECT * FROM byte_bank.conta WHERE numero = ? AND esta_ativa = TRUE";
+        String sql = "SELECT * FROM beca_java.byte_bank.conta WHERE numero = ? AND esta_ativa = TRUE";
 
         PreparedStatement ps;
         ResultSet resultSet;
@@ -119,7 +119,7 @@ public class ContaDAO {
 
     public void alterar(Integer numero, BigDecimal valor) {
         PreparedStatement ps;
-        String sql = "UPDATE byte_bank.conta SET saldo = ? WHERE numero = ?";
+        String sql = "UPDATE beca_java.byte_bank.conta SET saldo = ? WHERE numero = ?";
 
         try {
             conn.setAutoCommit(false);
@@ -144,7 +144,7 @@ public class ContaDAO {
     }
 
     public void deletar(Integer numeroConta) {
-        String sql = "DELETE FROM byte_bank.conta WHERE numero = ?";
+        String sql = "DELETE FROM beca_java.byte_bank.conta WHERE numero = ?";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class ContaDAO {
 
     public void alterarLogico(Integer numeroDaConta) {
         PreparedStatement ps;
-        String sql = "UPDATE byte_bank.conta SET esta_ativa = false WHERE numero = ?";
+        String sql = "UPDATE beca_java.byte_bank.conta SET esta_ativa = false WHERE numero = ?";
 
         try {
             ps = conn.prepareStatement(sql);
