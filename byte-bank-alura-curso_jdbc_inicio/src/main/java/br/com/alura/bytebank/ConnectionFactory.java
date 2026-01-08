@@ -19,9 +19,9 @@ public class ConnectionFactory {
 
     private HikariDataSource createDataSource() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/beca_java");
-        config.setUsername("devuser");
-        config.setPassword("dev1234");
+        config.setJdbcUrl("jdbc:postgresql://${DB_HOST}/${DB_NAME}");
+        config.setUsername("${DB_USER}");
+        config.setPassword("${DB_PASSWORD");
         // máximo de coneções permitidas
         config.setMaximumPoolSize(10);
 
