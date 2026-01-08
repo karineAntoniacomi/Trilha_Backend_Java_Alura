@@ -30,9 +30,18 @@ public class Serie {
 
     private String sinopse;
 
-    // ignora temporariamente e não salva no banco este atributo
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        // Associa episodios a série p/ associar a chave estrangeira
+        episodios.forEach(e -> e.setSerie(this));
+        this.episodios = episodios;
+    }
 
     public Serie() {}
 
@@ -133,6 +142,7 @@ public class Serie {
                 ", avaliacao=" + avaliacao +
                 ", atores='" + atores + '\'' +
                 ", poster='" + poster + '\'' +
-                ", sinopse='" + sinopse + '\'';
+                ", sinopse='" + sinopse + '\'' +
+                ", episodios='" + episodios + '\'';
     }
 }
