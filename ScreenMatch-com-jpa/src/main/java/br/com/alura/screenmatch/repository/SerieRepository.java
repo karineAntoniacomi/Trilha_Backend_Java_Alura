@@ -18,8 +18,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     List<Serie> findTop5ByOrderByAvaliacaoDesc();
 
     List<Serie> findByGenero(Categoria categoria);
-
-    // query derivada JPA
+    // query derivada JPA == seriesPorTemporadaEAvaliacao(int totalTemporadas, double avaliacao)
     List<Serie> findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(int totalTemporadas, double avaliacao);
 
     // query JPQL
