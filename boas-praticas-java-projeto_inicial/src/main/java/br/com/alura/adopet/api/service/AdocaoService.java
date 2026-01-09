@@ -39,8 +39,6 @@ public class AdocaoService {
         Pet pet = petRepository.getReferenceById(dto.idPet());
         Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
 
-//Trecho omitido
-
         if (pet.getAdotado () == true) {
             throw new ValidacaoException("Pet já foi adotado!");
         } else {
