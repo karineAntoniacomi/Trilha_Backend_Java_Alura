@@ -19,10 +19,12 @@ public class Adocao {
 
     private LocalDateTime data;
 
-    @ManyToOne
+    // LAZY p/ evitar carregar dados desnecessários junto com a entidade Adoção, como Tutor
+    @ManyToOne(fetch = FetchType.LAZY)
     private Tutor tutor;
 
-    @OneToOne
+    // LAZY p/ evitar carregar dados desnecessários junto com a entidade Adoção, como Pet
+    @OneToOne(fetch = FetchType.LAZY)
     private Pet pet;
 
     private String motivo;
