@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     @Autowired
-    private AdocaoRepository repository;
-
-    @Autowired
     private JavaMailSender emailSender;
 
     public void enviarEmail(String to, String subject, String message) {

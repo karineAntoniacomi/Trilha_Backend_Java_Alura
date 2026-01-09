@@ -1,13 +1,11 @@
-package br.com.alura.adopet.api.service.validations;
+package br.com.alura.adopet.api.validations;
 
 import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDto;
 import br.com.alura.adopet.api.exception.ValidacaoException;
 import br.com.alura.adopet.api.model.Adocao;
-import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.model.StatusAdocao;
 import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.AdocaoRepository;
-import br.com.alura.adopet.api.repository.PetRepository;
 import br.com.alura.adopet.api.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,24 +13,20 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ValidacaoTutorComLimiteDeAdocoes  implements ValidacaoSolicitacaoAdocao {
+public class ValidacaoTutorComAdocaoEmAndamento  implements ValidacaoSolicitacaoAdocao {
 
     @Autowired
-    AdocaoRepository adocaoRepository;
+    private AdocaoRepository adocaoRepository;
 
     @Autowired
-    TutorRepository tutorRepository;
+    private TutorRepository tutorRepository;
 
     public void validar(SolicitacaoAdocaoDto dto) {
         List<Adocao> adocoes = adocaoRepository.findAll();
         Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
         for (Adocao a : adocoes) {
-            int contador = 0;
             if (a.getTutor() == tutor && a.getStatus() == StatusAdocao.AGUARDANDO_AVALIACAO) {
-                contador += 1;
-            }
-            if (contador == 5) {
-                throw new ValidacaoException("Tutor chegou ao limite máximo de 5 adoções!");
+                throw new ValidacaoException("Tutor já possui outra adoçãoo aguardando avaliação!");
             }
         }
     }
