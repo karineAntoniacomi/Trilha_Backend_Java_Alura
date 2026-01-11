@@ -1,0 +1,174 @@
+package br.com.alura.adopet.api.controller;
+
+import br.com.alura.adopet.api.exception.ValidacaoException;
+import br.com.alura.adopet.api.model.Abrigo;
+import br.com.alura.adopet.api.service.AbrigoService;
+import br.com.alura.adopet.api.service.PetService;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class AbrigoControllerTest {
+
+    @MockitoBean
+    private AbrigoService abrigoService;
+
+    @MockitoBean
+    private PetService petService;
+
+    @Mock
+    private Abrigo abrigo;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void deveriaDevolverCodigo200ParaRequisicaoDeListarAbrigos() throws Exception {
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos")
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    void deveriaDevolverCodigo200ParaRequisicaoDeCadastrarAbrigo() throws Exception {
+        //ARRANGE
+        String json = """
+                {
+                    "nome": "Abrigo feliz",
+                    "telefone": "(94)0000-9090",
+                    "email": "email@example.com.br"
+                }
+                """;
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos")
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(200, response.getStatus());
+
+    }
+
+    @Test
+    void deveriaDevolverCodigo400ParaRequisicaoDeCadastrarAbrigo() throws Exception {
+        //ARRANGE
+        String json = """
+                {
+                    "nome": "Abrigo feliz",
+                    "telefone": "(94)0000-9090",
+                    "email": "email@example.com.br"
+                }
+                """;
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                post("/abrigos")
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    void deveriaDevolverCodigo200ParaRequisicaoDeListarPetsDoAbrigoPorNome() throws Exception {
+        //ARRANGE
+        String nome = "Abrigo feliz";
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos/{nome}/pets",nome)
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    void deveriaDevolverCodigo200ParaRequisicaoDeListarPetsDoAbrigoPorId() throws Exception {
+        //ARRANGE
+        String id = "1";
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos/{id}/pets",id)
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    void deveriaDevolverCodigo400ParaRequisicaoDeListarPetsDoAbrigoPorIdInvalido() throws Exception {
+        //ARRANGE
+        String id = "1";
+        given(abrigoService.listarPetsDoAbrigo(id)).willThrow(ValidacaoException.class);
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos/{id}/pets",id)
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    void deveriaDevolverCodigo400ParaRequisicaoDeListarPetsDoAbrigoPorNomeInvalido() throws Exception {
+        //ARRANGE
+        String nome = "Miau";
+        given(abrigoService.listarPetsDoAbrigo(nome)).willThrow(ValidacaoException.class);
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos/{nome}/pets",nome)
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(400, response.getStatus());
+    }
+
+    @Test
+    void deveriaDevolverCodigo200ParaRequisicaoDeCadastrarPetPeloId() throws Exception {
+        //ARRANGE
+        String json = """
+                {
+                    "tipo": "Gato",
+                    "nome": "Miau",
+                    "raca": "SRD",
+                    "idade": "5",
+                    "cor": "preto",
+                    "peso": "3.0"
+                }
+                """;
+
+        //ACT
+        MockHttpServletResponse response = mockMvc.perform(
+                get("/abrigos/{id}/pets",json)
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(200, response.getStatus());
+    }
+}
