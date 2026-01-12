@@ -13,11 +13,6 @@ public class FabricaDeUsuario {
         return this.usuario;
     }
 
-    public Usuario comNomeCpfNascimento(String cep, Integer numero, String complemento) {
-        this.usuario.setEndereco(new Endereco(cep, numero, complemento));
-        return this.usuario;
-    }
-
     public Usuario incluiEndereco(String cep, Integer numero, String complemento) {
         this.usuario.setEndereco(new Endereco(cep, numero, complemento));
         return this.usuario;

@@ -23,8 +23,6 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
         UsuarioEntity entity = mapper.toEntity(usuario);
         repositorio.save(entity);
         return mapper.toDomain(entity);
-
-
     }
 
     @Override
@@ -32,5 +30,23 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
         return repositorio.findAll().stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Usuario alteraUsuario(String cpf, Usuario usuario) {
+        UsuarioEntity entity = repositorio.findByCpf(cpf);
+        if (entity != null) {
+            var atualizado = mapper.toEntity(usuario);
+            atualizado.setId(entity.getId());
+            repositorio.save(atualizado);
+            return mapper.toDomain(atualizado);
+        }
+        return null;
+    }
+
+    @Override
+    public void excluiUsuario(String cpf) {
+        UsuarioEntity entity = repositorio.findByCpf(cpf);
+        repositorio.deleteById(entity.getId());
     }
 }
