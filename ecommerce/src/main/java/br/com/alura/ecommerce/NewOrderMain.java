@@ -29,14 +29,4 @@ public class NewOrderMain {
             }
         }
     }
-
-    private static Callback getCallback() {
-        return (data, ex) -> {
-            if (ex != null) {
-                ex.printStackTrace();
-                return;
-            }
-            System.out.println("sucesso enviando " + data.topic() + ":::partition " + data.partition() + "/ offset " + data.offset() + "/ timestamp " + data.timestamp());
-        };
-    }
 }
