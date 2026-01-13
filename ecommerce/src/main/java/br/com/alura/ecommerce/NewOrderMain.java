@@ -17,7 +17,7 @@ public class NewOrderMain {
 
         var producer = new KafkaProducer<String, String>(properties());
 
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 10; i++) {
             // Chave que decide em qual partição irá cair a mensagem
             var key = UUID.randomUUID().toString(); // aleatoriza a chave para não cair sempre na mesma partição
             var value = key + "67523,1234";
