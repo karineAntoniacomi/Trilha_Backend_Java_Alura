@@ -2,6 +2,10 @@ package br.com.alura.ecommerce;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +17,11 @@ public class CreateUserService {
 
     private final Connection connection;
 
-    CreateUserService() throws SQLException {
+    CreateUserService() throws SQLException, IOException {
+
+        Path path = Paths.get("target");
+        Files.createDirectories(path);
+
         String url = "jdbc:sqlite:target/users_database.db";
         connection = DriverManager.getConnection(url);
         try {
@@ -26,7 +34,7 @@ public class CreateUserService {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         var createUserService = new CreateUserService();
         try (var service = new KafkaService<>(CreateUserService.class.getSimpleName(),
                 "ECOMMERCE_NEW_ORDER",
