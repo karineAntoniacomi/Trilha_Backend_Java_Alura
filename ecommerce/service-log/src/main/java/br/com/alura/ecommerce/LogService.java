@@ -2,13 +2,9 @@ package br.com.alura.ecommerce;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-import java.io.IOException;
-import java.time.Duration;
 import java.util.Map;
-import java.util.Properties;
 import java.util.regex.Pattern;
 
 public class LogService {

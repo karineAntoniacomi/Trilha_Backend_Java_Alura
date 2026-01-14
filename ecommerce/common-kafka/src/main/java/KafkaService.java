@@ -1,5 +1,3 @@
-package br.com.alura.ecommerce;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -14,20 +12,20 @@ import java.util.regex.Pattern;
 
 class KafkaService<T> implements Closeable {
     private final KafkaConsumer<String, T> consumer;
-    private final ConsumerFunction parse;
+    private final ConsumerFunction<T> parse;
 
 
-    KafkaService(String groupId, String topic, ConsumerFunction parse, Class<T> type, Map<String,String> properties) {
+    KafkaService(String groupId, String topic, ConsumerFunction<T> parse, Class<T> type, Map<String,String> properties) {
         this(parse, groupId, type, properties);
         consumer.subscribe(Collections.singletonList(topic));
     }
 
-    KafkaService(String groupId, Pattern topic, ConsumerFunction parse, Class<T> type, Map<String,String> properties) {
+    KafkaService(String groupId, Pattern topic, ConsumerFunction<T> parse, Class<T> type, Map<String,String> properties) {
         this(parse, groupId, type, properties);
         consumer.subscribe(topic);
     }
 
-    private KafkaService(ConsumerFunction parse, String groupId, Class<T> type, Map<String, String> properties) {
+    private KafkaService(ConsumerFunction<T> parse, String groupId, Class<T> type, Map<String, String> properties) {
         this.parse = parse;
         this.consumer = new KafkaConsumer<>(getProperties(type, groupId, properties));
     }
