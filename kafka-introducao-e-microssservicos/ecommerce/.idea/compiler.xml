@@ -12,6 +12,7 @@
         <module name="service-new-order" />
         <module name="servicefrauddetector" />
         <module name="serviceneworder" />
+        <module name="services-users" />
         <module name="servicelog" />
         <module name="commonkafka" />
         <module name="service-fraud-detector" />

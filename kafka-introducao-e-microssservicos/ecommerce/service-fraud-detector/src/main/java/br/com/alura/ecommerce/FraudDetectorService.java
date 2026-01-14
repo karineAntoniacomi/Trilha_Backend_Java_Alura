@@ -40,7 +40,7 @@ public class FraudDetectorService {
         var order = record.value();
         if(isFraud(order)) {
             // pretending that the fraud happens when the amount is >= 4500
-            System.out.println("Order is a fraud!!!!!");
+            System.out.println("Order is a fraud!!!!!" + order);
             orderDispatcher.send("ECOMMERCE_ORDER_REJECTED", order.getUserId(), order);
         } else {
             System.out.println("Approved: " + order);
@@ -48,7 +48,7 @@ public class FraudDetectorService {
         }
     }
 
-    private boolean isFraud (Order order) {
+    private boolean isFraud(Order order) {
         return order.getAmount().compareTo(new BigDecimal("4500")) >= 0;
     }
 }
