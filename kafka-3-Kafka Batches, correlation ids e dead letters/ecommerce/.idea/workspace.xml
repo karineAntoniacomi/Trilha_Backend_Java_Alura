@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568d5a26-c942-4f6b-8c8f-2428d121d76c" name="Default Changelist" comment="" />
+    <list default="true" id="568d5a26-c942-4f6b-8c8f-2428d121d76c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/EmailNewOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-email-new-order/src/main/java/br/com/alura/ecommerce/EmailNewOrderService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,25 +49,32 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.EmailNewOrderService.executor": "Run",
+    "Application.FraudDetectorService.executor": "Run",
     "Application.HttpEcommerceService.executor": "Run",
+    "Application.LogService.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kantonis/desenv/Projetos/kafka-3-Kafka Batches, correlation ids e dead letters/ecommerce"
+    "last_opened_file_path": "C:/Users/kantonis/desenv/Projetos/kafka-3-Kafka Batches, correlation ids e dead letters/ecommerce/service-email-new-order/src/main/java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+    <key name="CreateClassDialog.RecentsKey">
       <recent name="br.com.alura.ecommerce" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kantonis\desenv\Projetos\kafka-3-Kafka Batches, correlation ids e dead letters\ecommerce\service-email-new-order\src\main\java" />
       <recent name="$PROJECT_DIR$/service-reading-report/src/main/java" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="br.com.alura.ecommerce" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
+    <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="br.com.alura.ecommerce" />
     </key>
   </component>
@@ -84,12 +97,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmailService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.EmailService" />
-      <module name="service-email" />
+    <configuration name="EmailNewOrderService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.EmailNewOrderService" />
+      <module name="service-email-new-order" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.alura.ecommerce.dispatcher.*" />
+          <option name="PATTERN" value="br.com.alura.ecommerce.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -165,7 +178,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.LogService" />
-      <item itemvalue="Application.EmailService" />
+      <item itemvalue="Application.EmailNewOrderService" />
       <item itemvalue="Application.FraudDetectorService" />
       <item itemvalue="Application.HttpEcommerceService" />
       <item itemvalue="Application.ReadingReportService" />
@@ -174,10 +187,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.HttpEcommerceService" />
+        <item itemvalue="Application.EmailNewOrderService" />
+        <item itemvalue="Application.FraudDetectorService" />
         <item itemvalue="Application.ReadingReportService" />
         <item itemvalue="Application.BatchSendMessageService" />
-        <item itemvalue="Application.FraudDetectorService" />
-        <item itemvalue="Application.EmailService" />
       </list>
     </recent_temporary>
   </component>
