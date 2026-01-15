@@ -63,7 +63,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ReadingReportService">
+  <component name="RunManager" selected="Application.HttpEcommerceService">
     <configuration name="BatchSendMessageService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.BatchSendMessageService" />
       <module name="service-users" />
@@ -157,7 +157,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.LogService (1)" />
+      <item itemvalue="Application.LogService" />
       <item itemvalue="Application.EmailService" />
       <item itemvalue="Application.FraudDetectorService" />
       <item itemvalue="Application.HttpEcommerceService" />
@@ -166,9 +166,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HttpEcommerceService" />
         <item itemvalue="Application.ReadingReportService" />
         <item itemvalue="Application.BatchSendMessageService" />
-        <item itemvalue="Application.HttpEcommerceService" />
         <item itemvalue="Application.FraudDetectorService" />
         <item itemvalue="Application.EmailService" />
       </list>
