@@ -30,7 +30,7 @@ import static org.apache.kafka.streams.StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_C
 
 @Configuration
 @EnableKafkaStreams
-public class ProducerKafkaConfig {
+public class ConsumerKafkaConfig {
 
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     public KafkaStreamsConfiguration kafkaStreamsConfig() {
